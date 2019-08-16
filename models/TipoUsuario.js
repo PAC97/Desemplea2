@@ -3,8 +3,14 @@ const Schema = mongoose.Schema;
 
 const TipoUsuarioSchema = new Schema({
     
-    nombre: String,
-    descripcion: String
+    nombre:{
+        type: String,
+        required: true
+    } ,
+    descripcion: {
+        type: String,
+        required: true
+    } ,
 },
 {
     versionKey: false

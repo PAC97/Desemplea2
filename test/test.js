@@ -28,7 +28,7 @@ describe('Obtener todos los servicios: ', ()=>{
         });
     });
 });
-const id = '5d52ef7f659aed2178923044';
+const id = '5d52f090fad5fa23b45c6f1c';
 describe('Obtener servicio con el id: '+ id, ()=>{
     it('Obtuviste el sevicio con el id:' + id, (done) =>{
         chai.request(url)

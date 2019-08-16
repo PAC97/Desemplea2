@@ -2,11 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PublicacionesSchema = new Schema({
-    Titulo: String,
-    Descripcion: String,
+    Titulo: {
+        type: String,
+        required: true
+    } ,
+    Descripcion: {
+        type: String,
+        required: true
+    } ,
     Usuario:{
         type: Schema.Types.ObjectId,
-        ref: 'Usuarios'
+        ref: 'Usuarios',
+        required: true
     }
 });
 

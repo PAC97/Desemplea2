@@ -6,9 +6,12 @@ const tipoUsuarioController = require('../controllers/tipoUsuarioController');
 const servicioController = require('../controllers/serviciosController');
 const usuarioController = require('../controllers/usuariosController');
 const publicacionController = require('../controllers/publicacionesController');
+const authController = require('../controllers/authController');
 module.exports = function(){
     //Tipo Usuario rutas
-    router.get('/api/tipoUsuario', tipoUsuarioController.tipoUsuarioLista);
+    router.get('/api/tipoUsuario', 
+    authController.ValidarAuth,
+    tipoUsuarioController.tipoUsuarioLista);
     router.post('/api/tipoUsuario', tipoUsuarioController.crearTipoUsuario);
     router.get ('/api/tipoUsuario/:id', tipoUsuarioController.tipoUsuarioPorId);
     router.put('/api/tipoUsuario/:id', tipoUsuarioController.actualizarTipousuario);
@@ -22,9 +25,10 @@ module.exports = function(){
     //Usuario Rutas
     router.get('/api/usuario', usuarioController.usuariosLista);
     router.post('/api/usuario', usuarioController.crearUsuario);
-    router.get ('/api/usuario/:id', servicioController.servicioPorId);
-    router.put('/api/usuario/:id', servicioController.actualizarServicio);
-    router.delete('/api/usuario/:id', servicioController.eliminarServicio);
+    router.get ('/api/usuario/:id', usuarioController.usuarioPorId);
+    router.put('/api/usuario/:id', usuarioController.actualizarUsuario);
+    router.delete('/api/usuario/:id', usuarioController.eliminarusuario);
+    router.post('/api/autenticacion', authController.Autenticacion);
     //Publicaciones rutas
     router.get('/api/publicaciones', publicacionController.publicacionesLista);
     router.post('/api/publicaciones', publicacionController.crearPublicacion);

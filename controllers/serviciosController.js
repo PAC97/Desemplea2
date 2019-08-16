@@ -1,8 +1,10 @@
 const Servicios = require('../models/Servicios');
+const chalk = require('chalk');
 
 exports.serviciosLista = async (req, res) => {
     const servicios = await Servicios.find();
     res.json(servicios);
+    console.log(chalk.bgBlue.white.bold(servicios));
 }
 
 exports.crearServicio = async (req, res) => {
@@ -19,7 +21,7 @@ exports.crearServicio = async (req, res) => {
 
 exports.servicioPorId = async (req, res) => {
     const id = req.params.id;
-    const servicio = await Servicios.findById(id, (err, servicio)=>{
+    await Servicios.findById(id, (err, servicio)=>{
         if(err) res.status(500).send({mensaje: `Error al realizar la peticion: ${err}`})
         if(!servicio) res.status(404).send({mensaje: 'No se encuentra ese dato'})
         else{

@@ -12,13 +12,15 @@ exports.crearUsuario = async (req, res) => {
     usuario.Telefono = req.body.Telefono,
     usuario.Direccion = req.body.Direccion,
     usuario.Correo = req.body.Correo,
+    usuario.Password = req.body.Password,
     usuario.ID_TipoUsuario = req.body.ID_TipoUsuario,
     usuario.ID_Servicio = req.body.ID_Servicio
 
     usuario.save((err, usuario) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
 
-        res.status(200).send({usuario: usuario})
+        
+        res.json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:null});
     })
 }
 
@@ -50,7 +52,7 @@ exports.actualizarUsuario = async (req, res) => {
     });
 }
 
-exports.eliminarServicio = async (req, res) => {
+exports.eliminarusuario = async (req, res) => {
     const id = req.params.id;
     
     const usuario = await Usuarios.findByIdAndRemove(id, (err, usuario)=>{
