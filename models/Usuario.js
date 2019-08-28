@@ -4,20 +4,18 @@ const bcrypt = require('bcrypt');
 const salt = 10;
 
  const UsuariosSchema = new Schema({
-    Nombres:{ type: String, required: true} ,
-    Apellidos: {type: String, required: true} ,
-    Edad: {type: String, required: true} ,
-    Telefono: {type: String, required: true} ,
-    Direccion: {type: String, required: true} ,
-    Correo: {type: String, required: true, unique: true} ,
-    Password: {type: String, required: true} ,
+    Nombres:{ type: String} ,
+    Apellidos: {type: String} ,
+    Edad: {type: String} ,
+    Telefono: {type: String} ,
+    Direccion: {type: String} ,
+    Correo: {type: String,  unique: true} ,
+    Password: {type: String} ,
     ID_TipoUsuario: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'TipoUsuario',
-        required: true},
+        ref: 'TipoUsuario'},
     ID_Servicio:{type: mongoose.Schema.Types.ObjectId,
-        ref: 'servicios',
-        required: true}
+        ref: 'servicios'}
 });
 
 //Hashear password

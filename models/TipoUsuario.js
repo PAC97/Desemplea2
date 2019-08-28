@@ -4,12 +4,10 @@ const Schema = mongoose.Schema;
 const TipoUsuarioSchema = new Schema({
     
     nombre:{
-        type: String,
-        required: true
+        type: String
     } ,
     descripcion: {
-        type: String,
-        required: true
+        type: String
     } ,
 },
 {

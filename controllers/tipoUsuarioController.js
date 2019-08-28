@@ -55,6 +55,6 @@ exports.eliminarTipousuario = async (req, res) => {
             throw err;
         }
         if(!tipoUsuario) res.status(404).send('No se encuentra ese dato')
-        res.send('Tipo usuario eliminado')
+        res.json({status:'Success', mensaje:'Tipo usuario eliminado'});
     })
 }

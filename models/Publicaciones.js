@@ -3,17 +3,14 @@ const Schema = mongoose.Schema;
 
 const PublicacionesSchema = new Schema({
     Titulo: {
-        type: String,
-        required: true
+        type: String   
     } ,
     Descripcion: {
-        type: String,
-        required: true
+        type: String  
     } ,
     Usuario:{
         type: Schema.Types.ObjectId,
         ref: 'Usuarios',
-        required: true
     }
 });
 

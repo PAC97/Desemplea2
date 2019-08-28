@@ -8,9 +8,10 @@ exports.serviciosLista = async (req, res) => {
 }
 
 exports.crearServicio = async (req, res) => {
-    const servicio = new Servicios()
+    const servicio = await new Servicios()
     servicio.nombre = req.body.nombre
     servicio.descripcion = req.body.descripcion
+    console.log(req.body.nombre, req.body.descripcion)
 
     servicio.save((err, servicio) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
@@ -55,6 +56,6 @@ exports.eliminarServicio = async (req, res) => {
             throw err;
         }
         if(!servicio) res.status(404).send('No se encuentra ese dato')
-        res.status(200).send('Servicio eliminado')
+        res.json({status:'Success', mensaje:'Servicio eliminado'});
     })
 }

@@ -30,7 +30,7 @@ exports.usuarioPorId = async (req, res) => {
         if(err) res.status(500).send({mensaje: `Error al realizar la peticion: ${err}`})
         if(!usuario) res.status(404).send({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).send({usuario : usuario})
+            res.status(200).send({mensaje : 'Usuario encontrado.'})
             console.log(usuario);
         }
     });
