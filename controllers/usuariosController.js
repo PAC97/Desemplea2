@@ -1,4 +1,7 @@
 const Usuarios = require('../models/Usuario');
+const multer = require('multer');
+const upload = multer({dest: './uploads/'});
+const fs = require('fs');
 exports.usuariosLista = async (req, res) => {
     const usuarios = await Usuarios.find();
     res.json(usuarios);
