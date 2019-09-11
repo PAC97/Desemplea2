@@ -14,8 +14,7 @@ const salt = 10;
     ID_TipoUsuario: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TipoUsuario'},
-    ID_Servicio:{type: mongoose.Schema.Types.ObjectId,
-        ref: 'servicios'},
+    Servicios:[String],
     pathImg: {type: String}
 });
 

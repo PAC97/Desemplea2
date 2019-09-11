@@ -21,8 +21,6 @@ exports.crearUsuario = async (req, res) => {
 
     usuario.save((err, usuario) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
-
-        
         res.json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:null});
     })
 }

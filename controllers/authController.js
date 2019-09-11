@@ -10,9 +10,14 @@ exports.Autenticacion = async (req, res, next) => {
         }else{
             if(bcrypt.compareSync(req.body.Password, Usuario.Password)){
                 console.log(chalk.inverse(req.body.Password, Usuario.Password));
-                const token = jwt.sign({id: Usuario,}, req.app.get('secretKey'),
+                const token = jwt.sign({id: Usuario._id,}, req.app.get('secretKey'),
                 {expiresIn: '1h'});
-                res.json({status:'Success', mensaje:'Usuario encontrado', data:{Usuario: Usuario, token:token}});
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const buff = new Buffer.from(base64, 'base64');
+                const payloadinit = buff.toString('ascii');
+                const payload = JSON.parse(payloadinit);
+                res.json({status:'Success', mensaje:'Usuario encontrado', data:{Usuario: Usuario._id, token:token, payload: payload}});
             }else{
                 res.json({status:'error', mensaje:'Credenciales invalidas', data: null})
             }
