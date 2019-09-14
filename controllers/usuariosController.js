@@ -17,7 +17,7 @@ exports.crearUsuario = async (req, res) => {
     usuario.Correo = req.body.Correo,
     usuario.Password = req.body.Password,
     usuario.ID_TipoUsuario = req.body.ID_TipoUsuario,
-    usuario.ID_Servicio = req.body.ID_Servicio
+    usuario.Servicios = ['Albañil', 'Fontanero'];
 
     usuario.save((err, usuario) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
@@ -31,7 +31,7 @@ exports.usuarioPorId = async (req, res) => {
         if(err) res.status(500).send({mensaje: `Error al realizar la peticion: ${err}`})
         if(!usuario) res.status(404).send({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).send({mensaje : 'Usuario encontrado.'})
+            res.status(200).send({mensaje : 'Usuario encontrado.', usuario})
             console.log(usuario);
         }
     });

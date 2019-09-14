@@ -19,7 +19,7 @@ exports.crearPublicacion = (req, res) => {
     publicacion.save((err, publicacion) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
 
-        res.status(200).send({publicacion: publicacion})
+        res.status(200).send({publicacion});
     })
 }
 
@@ -62,5 +62,17 @@ exports.eliminarPublicacion = async (req, res) => {
         }
         if(!publicacion) res.status(404).send('No se encuentra ese dato')
         res.send('Publicacion elimiada')
+    })
+}
+
+exports.publicacionPorUsuario = async (req, res)=>{
+    const idUsuario = req.params.usuario;
+    console.log(idUsuario);
+    const publicacion = await Publicaciones.find({$or:[{'Usuario':idUsuario}]},(err, publicaciones)=>{
+        if(err){
+            throw err;
+        }
+        if(!publicaciones) res.status(404).send('No se encuentra la publicacion')
+        res.status(200).send({publicaciones : publicaciones})
     })
 }
