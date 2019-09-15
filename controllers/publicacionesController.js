@@ -10,8 +10,8 @@ exports.publicacionesLista = async (req, res) => {
     
 }
 
-exports.crearPublicacion = (req, res) => {
-    const publicacion = new Publicaciones()
+exports.crearPublicacion = async (req, res) => {
+    const publicacion = await new Publicaciones()
     publicacion.Titulo = req.body.Titulo
     publicacion.Descripcion = req.body.Descripcion
     publicacion.Usuario = req.body.Usuario
