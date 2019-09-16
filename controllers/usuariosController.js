@@ -17,7 +17,7 @@ exports.crearUsuario = async (req, res) => {
     usuario.Correo = req.body.Correo,
     usuario.Password = req.body.Password,
     usuario.ID_TipoUsuario = req.body.ID_TipoUsuario,
-    usuario.Servicios = ['Albañil', 'Fontanero'];
+    usuario.Servicios = req.body.Servicios;
 
     usuario.save((err, usuario) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})

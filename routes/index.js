@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 //Importar controladores
 const tipoUsuarioController = require('../controllers/tipoUsuarioController');
 const servicioController = require('../controllers/serviciosController');
@@ -9,6 +8,7 @@ const publicacionController = require('../controllers/publicacionesController');
 const authController = require('../controllers/authController');
 module.exports = function(){
     //Tipo Usuario rutas
+    
     router.get('/api/tipoUsuario', 
     authController.ValidarAuth, 
     tipoUsuarioController.tipoUsuarioLista);
@@ -27,7 +27,7 @@ module.exports = function(){
 
     //Servicios rutas
     router.get('/api/servicio', 
-    authController.ValidarAuth,
+    
     servicioController.serviciosLista);
     router.post('/api/servicio', 
     authController.ValidarAuth,
@@ -44,7 +44,7 @@ module.exports = function(){
 
     //Usuario Rutas
     router.get('/api/usuario', 
-    authController.ValidarAuth,
+    
     usuarioController.usuariosLista);
     router.post('/api/usuario', 
     

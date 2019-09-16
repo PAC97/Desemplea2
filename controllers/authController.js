@@ -4,7 +4,9 @@ const jwt = require('jsonwebtoken');
 const chalk = require('chalk');
 
 exports.Autenticacion = async (req, res, next) => {
-    Usuarios.findOne({Correo:req.body.Correo}, function(err, Usuario){
+    Usuarios.findOne({Correo:req.body.Correo})
+    .populate('ID_TipoUsuario')
+    .exec(function(err, Usuario){
         if(err){
             next(err);
         }else{

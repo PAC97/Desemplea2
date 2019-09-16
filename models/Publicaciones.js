@@ -17,6 +17,9 @@ const PublicacionesSchema = new Schema({
     Fecha:{
         type: Date,
         default: fechaActual
+    },
+    Estado:{
+        type: Boolean
     }
 });
 

@@ -15,7 +15,9 @@ const salt = 10;
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TipoUsuario'},
     Servicios:[String],
-    pathImg: {type: String}
+    pathImg: {type: String},
+    Region: {type: String},
+    Estado: {type: Boolean, default: 1}
 });
 
 //Hashear password
