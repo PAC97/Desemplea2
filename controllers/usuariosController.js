@@ -39,17 +39,24 @@ exports.usuarioPorId = async (req, res) => {
 
 exports.actualizarUsuario = async (req, res) => {
     const id = req.params.id;
-    const {nombre, descripcion} = req.body;
-    const servicio = await Servicios.findByIdAndUpdate(id, {$set: {
-        nombre,
-        descripcion
-    }}, {new : true}, function(err, servicio){
+    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios} = req.body;
+    const usuario = await Usuarios.findByIdAndUpdate(id, {$set: {
+        Nombres,
+        Apellidos,
+        Edad,
+        Telefono,
+        Direccion,
+        Correo,
+        Password,
+        ID_TipoUsuario,
+        Servicios
+    }}, {new : true}, function(err, usuario){
         if(err){
             console.log('Error:', err);
             res.send('Error')
         }
-        console.log(servicio);
-        res.send('Actualizado');
+        console.log(usuario);
+        res.status(200).json({mensaje: 'Actualizado', Usuario: usuario});
     });
 }
 

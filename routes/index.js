@@ -10,10 +10,10 @@ module.exports = function(){
     //Tipo Usuario rutas
     
     router.get('/api/tipoUsuario', 
-    authController.ValidarAuth, 
+    /* authController.ValidarAuth,  */
     tipoUsuarioController.tipoUsuarioLista);
     router.post('/api/tipoUsuario', 
-    authController.ValidarAuth,
+    //authController.ValidarAuth,
     tipoUsuarioController.crearTipoUsuario);
     router.get ('/api/tipoUsuario/:id', 
     authController.ValidarAuth,
@@ -22,7 +22,7 @@ module.exports = function(){
     authController.ValidarAuth,
     tipoUsuarioController.actualizarTipousuario);
     router.delete('/api/tipoUsuario/:id', 
-    authController.ValidarAuth,
+    //authController.ValidarAuth,
     tipoUsuarioController.eliminarTipousuario);
 
     //Servicios rutas
@@ -53,7 +53,7 @@ module.exports = function(){
     authController.ValidarAuth,
     usuarioController.usuarioPorId);
     router.put('/api/usuario/:id', 
-    authController.ValidarAuth,
+    //authController.ValidarAuth,
     usuarioController.actualizarUsuario);
     router.delete('/api/usuario/:id', 
     authController.ValidarAuth,
