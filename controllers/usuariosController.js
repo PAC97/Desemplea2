@@ -1,7 +1,4 @@
 const Usuarios = require('../models/Usuario');
-const multer = require('multer');
-const upload = multer({dest: './uploads/'});
-const fs = require('fs');
 exports.usuariosLista = async (req, res) => {
     const usuarios = await Usuarios.find();
     res.json(usuarios);
@@ -17,8 +14,8 @@ exports.crearUsuario = async (req, res) => {
     usuario.Correo = req.body.Correo,
     usuario.Password = req.body.Password,
     usuario.ID_TipoUsuario = req.body.ID_TipoUsuario,
-    usuario.Servicios = req.body.Servicios;
-
+    usuario.Servicios = req.body.Servicios,
+    usuario.pathImg = req.file.path
     usuario.save((err, usuario) =>{
         if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
         res.json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:null});
@@ -39,7 +36,7 @@ exports.usuarioPorId = async (req, res) => {
 
 exports.actualizarUsuario = async (req, res) => {
     const id = req.params.id;
-    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios} = req.body;
+    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios, pathImg} = req.body;
     const usuario = await Usuarios.findByIdAndUpdate(id, {$set: {
         Nombres,
         Apellidos,
