@@ -2,7 +2,7 @@ const TipoUsuario = require('../models/TipoUsuario');
 
 exports.tipoUsuarioLista = async (req, res) => {
     const tipoUsuario = await TipoUsuario.find();
-    res.json(tipoUsuario);
+    res.json({tipoUsuario});
 }
 
 exports.crearTipoUsuario = (req, res) => {
@@ -11,9 +11,9 @@ exports.crearTipoUsuario = (req, res) => {
     tipoUsuario.descripcion = req.body.descripcion
 
     tipoUsuario.save((err, tipoUsuarioStored) =>{
-        if(err) res.status(500).send({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
+        if(err) res.status(500).json({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
 
-        res.status(200).send({tipoUsuario: tipoUsuarioStored})
+        res.status(200).json({tipoUsuario: tipoUsuarioStored})
     })
 }
 
@@ -21,10 +21,10 @@ exports.tipoUsuarioPorId = async (req, res, next) => {
     const id = req.params.id;
     
    const tipoUsuario = await TipoUsuario.findById(id, (err, tipoUsuario)=>{   
-        if(err) res.status(500).send({mensaje: `Error al realizar la peticion: ${err}`})
-        if(!tipoUsuario) res.status(404).send({mensaje: 'No se encuentra ese dato'})
+        if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
+        if(!tipoUsuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).send({tipoUsuario : tipoUsuario})
+            res.status(200).json({tipoUsuario : tipoUsuario})
             console.log(tipoUsuario);
         }
         
@@ -40,10 +40,10 @@ exports.actualizarTipousuario = async (req, res) => {
     }}, {new : true}, function(err, tipoUsuario){
         if(err){
             console.log('Error:', err);
-            res.send('Error')
+            res.json('Error')
         }
         console.log(tipoUsuario);
-        res.send('Actualizado');
+        res.json({mensaje: 'Actualizado'});
     });
 }
 
@@ -54,7 +54,7 @@ exports.eliminarTipousuario = async (req, res) => {
         if(err) {
             throw err;
         }
-        if(!tipoUsuario) res.status(404).send('No se encuentra ese dato')
+        if(!tipoUsuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         res.json({status:'Success', mensaje:'Tipo usuario eliminado'});
     })
 }

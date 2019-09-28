@@ -9,7 +9,7 @@ describe('Insertar tipo de usuario: ', ()=>{
     it('Insertatste un tipo de usuario', (done) =>{
         chai.request(url)
         .post('/tipoUsuario')
-        .send({nombre: 'Test', descripcion: 'Tipo Usuario de prueba'})
+        .json({nombre: 'Test', descripcion: 'Tipo Usuario de prueba'})
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);
@@ -63,7 +63,7 @@ describe('Actualizar tipo de usuario  con el id: '+ id, ()=>{
     it('Se actualizo el tipo de usuario con el id: '+ id, (done) =>{
         chai.request(url)
         .put(`/tipoUsuario/${id}`)
-        .send({nombre: 'test1', descripcion:'test'})
+        .json({nombre: 'test1', descripcion:'test'})
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);

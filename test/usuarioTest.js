@@ -10,7 +10,7 @@ describe('Insertar usuario: ', ()=>{
     it('Insertatste usuario', (done) =>{
         chai.request(url)
         .post('/usuario')
-        .send({Nombres: 'Test', Apellidos: 'Atest', Edad: '22', Telefono: '77788', Direccion:'test', Correo: 'test@test.com', ID_TipoUsuario: ID_TipoUsuario, ID_Servicio: ID_Servicio})
+        .json({Nombres: 'Test', Apellidos: 'Atest', Edad: '22', Telefono: '77788', Direccion:'test', Correo: 'test@test.com', ID_TipoUsuario: ID_TipoUsuario, ID_Servicio: ID_Servicio})
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);
@@ -64,7 +64,7 @@ describe('Actualizar usuario  con el id: '+ id, ()=>{
     it('Se actualizo el usuario con el id: '+ id, (done) =>{
         chai.request(url)
         .put(`/usuario/${id}`)
-        .send({Nombres: 'Test1', Apellidos: 'Atest1', Edad: '22', Telefono: '77788', Direccion:'test', Correo: 'test@test.com', ID_TipoUsuario: ID_TipoUsuario, ID_Servicio: ID_Servicio})
+        .json({Nombres: 'Test1', Apellidos: 'Atest1', Edad: '22', Telefono: '77788', Direccion:'test', Correo: 'test@test.com', ID_TipoUsuario: ID_TipoUsuario, ID_Servicio: ID_Servicio})
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);

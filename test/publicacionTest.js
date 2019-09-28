@@ -10,7 +10,7 @@ describe('Insertar publicacion: ', ()=>{
     it('Insertatste publicacion', (done) =>{
         chai.request(url)
         .post('/publicaciones')
-        .send({Titulo: 'Test', Descripcion: 'Atest', Usuario: Usuario })
+        .json({Titulo: 'Test', Descripcion: 'Atest', Usuario: Usuario })
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);
@@ -64,7 +64,7 @@ describe('Actualizar publicacion  con el id: '+ id, ()=>{
     it('Se actualizo la publicacion con el id: '+ id, (done) =>{
         chai.request(url)
         .put(`/publicaciones/${id}`)
-        .send({Titulo: 'Test', Descripcion: 'Atest', Usuario: Usuario})
+        .json({Titulo: 'Test', Descripcion: 'Atest', Usuario: Usuario})
         .end(function(err, res){
             if(err){
                 expect(res).to.have.status(500);

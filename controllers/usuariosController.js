@@ -17,7 +17,7 @@ exports.crearUsuario = async (req, res) => {
     usuario.Servicios = req.body.Servicios,
     usuario.pathImg = req.file.path
     usuario.save((err, usuario) =>{
-        if(err) res.status(500).send({mensaje: `Error al insertar Servicio: ${err}`})
+        if(err) res.status(500).json({mensaje: `Error al insertar Servicio: ${err}`})
         res.json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:null});
     })
 }
@@ -25,10 +25,10 @@ exports.crearUsuario = async (req, res) => {
 exports.usuarioPorId = async (req, res) => {
     const id = req.params.id;
     const usuario = await Usuarios.findById(id, (err, usuario)=>{
-        if(err) res.status(500).send({mensaje: `Error al realizar la peticion: ${err}`})
-        if(!usuario) res.status(404).send({mensaje: 'No se encuentra ese dato'})
+        if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
+        if(!usuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).send({mensaje : 'Usuario encontrado.', usuario})
+            res.status(200).json({mensaje : 'Usuario encontrado.', usuario})
             console.log(usuario);
         }
     });
@@ -50,7 +50,7 @@ exports.actualizarUsuario = async (req, res) => {
     }}, {new : true}, function(err, usuario){
         if(err){
             console.log('Error:', err);
-            res.send('Error')
+            res.json({mensaje: 'Error'})
         }
         console.log(usuario);
         res.status(200).json({mensaje: 'Actualizado', Usuario: usuario});
@@ -64,7 +64,7 @@ exports.eliminarusuario = async (req, res) => {
         if(err) {
             throw err;
         }
-        if(!usuario) res.status(404).send('No se encuentra ese dato')
-        res.status(200).send('Servicio eliminado')
+        if(!usuario) res.status(404).json({mensaje:'No se encuentra ese dato'})
+        res.status(200).json({mensaje: 'Servicio eliminado'})
     })
 }

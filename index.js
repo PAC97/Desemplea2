@@ -27,13 +27,13 @@ app.use(bodyParser.json());
 
 //Importar modelos de datos
 app.use('/uploads', express.static(path.resolve('uploads')));
-app.use('/', routes());
+app.use('/api', routes());
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) =>{
     console.log(err);
     
      if(err.status === 404)
       res.status(404).json({message: "No encontrado"});
      else 
        res.status(500).json({message: "Ocurrio un error :( !!!"});});
-app.listen(3000);
+app.listen(3001);

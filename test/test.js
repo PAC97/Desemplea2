@@ -9,7 +9,7 @@ describe('Insertar servicio: ', ()=>{
     it('Insertatste un servicio', (done) =>{
         chai.request(url)
         .post('/servicio')
-        .send({nombre: 'Test', descripcion: 'Servicio de prueba'})
+        .json({nombre: 'Test', descripcion: 'Servicio de prueba'})
         .end(function(err, res){
             console.log(res.body)
             expect(res).to.have.status(200);
@@ -46,7 +46,7 @@ describe('Actualizar servicio con el id: '+ id, ()=>{
     it('Se actualizo el servicio con el id: '+ id, (done) =>{
         chai.request(url)
         .put(`/servicio/${id}`)
-        .send({nombre: 'test1', descripcion:'test'})
+        .json({nombre: 'test1', descripcion:'test'})
         .end(function(err, res){
             console.log(res.body)
             expect(res.body).to.have.property('_id').to.be.equal(id);
