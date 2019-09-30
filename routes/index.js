@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('../config/multer');
+
 
 //Importar controladores
 const tipoUsuarioController = require('../controllers/tipoUsuarioController');
@@ -49,7 +49,6 @@ module.exports = function(){
     
     usuarioController.usuariosLista);
     router.post('/api/usuario', 
-    multer.single('image'),
     usuarioController.crearUsuario);
     router.get ('/api/usuario/:id', 
     /* authController.ValidarAuth, */
