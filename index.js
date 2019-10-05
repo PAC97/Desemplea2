@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //Importar modelos de datos
-app.use('/uploads', express.static(path.resolve('uploads')));
+
 app.use('/', routes());
 
 app.use((err, req, res, next) =>{

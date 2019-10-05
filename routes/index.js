@@ -15,7 +15,7 @@ module.exports = function(){
     authController.ValidarAuth,  
     tipoUsuarioController.tipoUsuarioLista);
     router.post('/api/tipoUsuario', 
-    authController.ValidarAuth,
+     authController.ValidarAuth, 
     tipoUsuarioController.crearTipoUsuario);
     router.get ('/api/tipoUsuario/:id', 
     authController.ValidarAuth,
@@ -67,7 +67,7 @@ module.exports = function(){
     authController.ValidarAuth,
     publicacionController.publicacionesLista);
     router.post('/api/publicaciones', 
-    authController.ValidarAuth,
+     authController.ValidarAuth,
     publicacionController.crearPublicacion);
     router.get ('/api/publicaciones/:id', 
     authController.ValidarAuth,
