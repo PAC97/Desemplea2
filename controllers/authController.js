@@ -19,7 +19,7 @@ exports.Autenticacion = async (req, res, next) => {
                 const buff = new Buffer.from(base64, 'base64');
                 const payloadinit = buff.toString('ascii');
                 const payload = JSON.parse(payloadinit);
-                res.json({status:'Success', mensaje:'Usuario encontrado', data:{Usuario: Usuario._id, Rol: Usuario.ID_TipoUsuario, token:token, payload: payload}});
+                res.json({status:'Success', mensaje:'Usuario encontrado', data:{Usuario: Usuario._id, Rol: Usuario.ID_TipoUsuario, token:token, payload: payload, Servicios: Usuario.Servicios}});
             }else{
                 res.json({status:'error', mensaje:'Credenciales invalidas', data: null})
             }

@@ -20,7 +20,10 @@ const PublicacionesSchema = new Schema({
     },
     Estado:{
         type: Boolean
-    }
+    },
+    ID_Servicio: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'servicios'},
 });
 
 module.exports = mongoose.model('Publicaciones', PublicacionesSchema);

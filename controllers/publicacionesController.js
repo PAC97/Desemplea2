@@ -15,6 +15,7 @@ exports.crearPublicacion = async (req, res) => {
     publicacion.Titulo = req.body.Titulo
     publicacion.Descripcion = req.body.Descripcion
     publicacion.Usuario = req.body.Usuario
+    publicacion.ID_Servicio = req.body.ID_Servicio
 
     publicacion.save((err, publicacion) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
