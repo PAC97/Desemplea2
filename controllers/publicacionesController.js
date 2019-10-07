@@ -19,7 +19,7 @@ exports.crearPublicacion = async (req, res) => {
     publicacion.save((err, publicacion) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
 
-        res.status(200).json({publicacion});
+        res.status(200).json({status: 'Success', publicacion: publicacion})
     })
 }
 
@@ -30,7 +30,7 @@ exports.publicacionPorId = async (req, res, next) => {
         if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
         if(!publicacion) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).json({publicacion : publicacion})
+            res.status(200).json({status: 'Success', publicacion: publicacion})
             console.log(publicacion);
         }
         
@@ -49,7 +49,7 @@ exports.actualizarPublicacion = async (req, res) => {
             res.json('Error')
         }
         console.log(publicacion);
-        res.json('Actualizado');
+        res.status(200).json({status: 'Success', mensaje: 'Actualizada'})
     });
 }
 
@@ -61,7 +61,7 @@ exports.eliminarPublicacion = async (req, res) => {
             throw err;
         }
         if(!publicacion) res.status(404).json({mensaje: 'No se encuentra ese dato'})
-        res.json('Publicacion elimiada')
+        res.status(200).json({status: 'Success', mensaje:'Publicacion eliminada.'})
     })
 }
 
@@ -73,6 +73,6 @@ exports.publicacionPorUsuario = async (req, res)=>{
             throw err;
         }
         if(!publicaciones) res.status(404).json({mensaje:'No se encuentra la publicacion'})
-        res.status(200).json({publicaciones : publicaciones})
+        res.status(200).json({status: 'Success', publicacion: publicacion})
     })
 }

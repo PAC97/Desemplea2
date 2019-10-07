@@ -28,7 +28,7 @@ exports.usuarioPorId = async (req, res) => {
         if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
         if(!usuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).json({mensaje : 'Usuario encontrado.', usuario})
+            res.status(200).json({status: 'Success', mensaje : 'Usuario encontrado.', usuario})
             console.log(usuario);
         }
     });
@@ -54,7 +54,7 @@ exports.actualizarUsuario = async (req, res) => {
             res.json({mensaje: 'Error'})
         }
         console.log(usuario);
-        res.status(200).json({mensaje: 'Actualizado', Usuario: usuario});
+        res.status(200).json({status:'Success', mensaje: 'Actualizado', Usuario: usuario});
     });
 }
 
@@ -66,6 +66,6 @@ exports.eliminarusuario = async (req, res) => {
             throw err;
         }
         if(!usuario) res.status(404).json({mensaje:'No se encuentra ese dato'})
-        res.status(200).json({mensaje: 'Servicio eliminado'})
+        res.status(200).json({status:'Success',mensaje: 'Servicio eliminado'})
     })
 }

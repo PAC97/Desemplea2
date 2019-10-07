@@ -13,7 +13,7 @@ exports.crearTipoUsuario = (req, res) => {
     tipoUsuario.save((err, tipoUsuarioStored) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Tipo de Usuario: ${err}`})
 
-        res.status(200).json({tipoUsuario: tipoUsuarioStored})
+        res.status(200).json({status: 'Success', tipoUsuario: tipoUsuarioStored})
     })
 }
 
@@ -24,7 +24,7 @@ exports.tipoUsuarioPorId = async (req, res, next) => {
         if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
         if(!tipoUsuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
-            res.status(200).json({tipoUsuario : tipoUsuario})
+            res.status(200).json({status: 'Success', tipoUsuario: tipoUsuario})
             console.log(tipoUsuario);
         }
         
@@ -43,7 +43,7 @@ exports.actualizarTipousuario = async (req, res) => {
             res.json('Error')
         }
         console.log(tipoUsuario);
-        res.json({mensaje: 'Actualizado'});
+        res.status(200).json({status: 'Success', mensaje: 'Tipo usuario actualizado'})
     });
 }
 

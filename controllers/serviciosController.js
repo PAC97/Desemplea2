@@ -16,7 +16,7 @@ exports.crearServicio = async (req, res) => {
     servicio.save((err, servicio) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Servicio: ${err}`})
 
-        res.status(200).json({servicio: servicio})
+        res.status(200).json({status: 'Success', servicio: servicio})
     })
 }
 
@@ -44,7 +44,7 @@ exports.actualizarServicio = async (req, res) => {
             res.json({mensaje: 'error'})
         }
         console.log(servicio);
-        res.json({mensaje: 'Actualizado'});
+        res.json({status:'Success', mensaje:'Servicio actualizado'});
     });
 }
 
