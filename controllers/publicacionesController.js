@@ -73,6 +73,7 @@ exports.publicacionPorUsuario = async (req, res)=>{
             throw err;
         }
         if(!publicaciones) res.status(404).json({mensaje:'No se encuentra la publicacion'})
-        res.status(200).json({status: 'Success', publicacion: publicacion})
+        res.status(200).json({status: 'Success', publicaciones: publicaciones})
+        console.log(publicaciones);
     })
 }
