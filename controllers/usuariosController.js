@@ -46,7 +46,8 @@ exports.actualizarUsuario = async (req, res) => {
         Correo,
         Password,
         ID_TipoUsuario,
-        Servicios
+        Servicios,
+        pathImg
     }}, {new : true}, function(err, usuario){
         if(err){
             console.log('Error:', err);
