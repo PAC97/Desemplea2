@@ -78,3 +78,16 @@ exports.publicacionPorUsuario = async (req, res)=>{
         console.log(publicaciones);
     })
 }
+
+exports.publicacionPorServicio = async (req, res)=>{
+    const idServicio = req.params.servicio;
+    console.log(idServicio);
+    const publicacion = await Publicaciones.find({$or:[{'ID_Servicio':idServicio}]},(err, publicaciones)=>{
+        if(err){
+            throw err;
+        }
+        if(!publicaciones) res.status(404).json({mensaje:'No se encuentra la publicacion'})
+        res.status(200).json({status: 'Success', publicaciones: publicaciones})
+        console.log(publicaciones);
+    })
+}

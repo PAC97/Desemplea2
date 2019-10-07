@@ -75,6 +75,9 @@ module.exports = function(){
     router.get ('/api/publicacionesUsuario/:usuario', 
     authController.ValidarAuth,
     publicacionController.publicacionPorUsuario);
+    router.get ('/api/publicacioneServicio/:servicio', 
+    authController.ValidarAuth,
+    publicacionController.publicacionPorServicio);
     router.put('/api/publicaciones/:id', 
     authController.ValidarAuth,
     publicacionController.actualizarPublicacion);
