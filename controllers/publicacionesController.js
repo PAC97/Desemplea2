@@ -2,6 +2,7 @@ const Publicaciones = require('../models/Publicaciones');
 exports.publicacionesLista = async (req, res) => {
     await Publicaciones.find({})
     .populate('Usuario')
+    .populate('ID_Servicio')
     .exec(function(err, publicaciones){
         if(err) res.status(500).json('Error')
         console.log(publicaciones);
