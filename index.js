@@ -1,19 +1,40 @@
 const express = require('express');
-const routes = require('./routes'); 
-const path = require('path');
-const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
-const flash = require('connect-flash');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const logger = require('morgan');
-/* const passport = require('./config/passport'); */
-
-//Conexion a base de datos
-const db = require('./config/db');
 const app = express();
+const routes = require('./routes'); 
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const logger = require('morgan');
+const Mensajes = require('./models/Mensajes');
+app.set('port', process.env.PORT || 3000)
+
+app.set('server', app.listen(app.get('port'), ()=>{
+  console.log('Servidor en puerto', app.get('port'));
+}));
+
+const db = require('./config/db');
+
+const socketIO = require('socket.io');
+const io = socketIO(app.get('server'));
+
+io.on('connection', (socket) => {
+  console.log('Nueva conexion');
+
+  socket.on('nuevo-mensaje', (mensaje) => {
+      console.log(mensaje);
+    });
+  socket.on('nuevo-mensaje', (mensaje, emisor, receptor) => {
+      io.emit('nuevo-mensaje',{
+        emisor: emisor,
+        mensaje: mensaje,
+        receptor: receptor
+      });   
+      const mensajes = new Mensajes({Emisor: emisor, Mensaje: mensaje, Receptor: receptor});
+      mensajes.save();   
+    });
+}); 
+//Conexion a base de datos
+
+
 
 //Configuraciones
 app.set('secretKey', 'nodeRestApi')
@@ -36,4 +57,7 @@ app.use((err, req, res, next) =>{
       res.status(404).json({message: "No encontrado"});
      else 
        res.status(500).json({message: "Ocurrio un error :( !!!"});});
-app.listen(3000);
+
+
+
+

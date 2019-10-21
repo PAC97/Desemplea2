@@ -29,7 +29,7 @@ exports.usuarioPorId = async (req, res) => {
         if(!usuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
             res.status(200).json({status: 'Success', mensaje : 'Usuario encontrado.', usuario})
-            console.log(usuario);
+            
         }
     });
 }
@@ -50,10 +50,10 @@ exports.actualizarUsuario = async (req, res) => {
         pathImg
     }}, {new : true}, function(err, usuario){
         if(err){
-            console.log('Error:', err);
+            
             res.json({mensaje: 'Error'})
         }
-        console.log(usuario);
+        
         res.status(200).json({status:'Success', mensaje: 'Actualizado', Usuario: usuario});
     });
 }

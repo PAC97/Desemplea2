@@ -4,14 +4,14 @@ const chalk = require('chalk');
 exports.serviciosLista = async (req, res) => {
     const servicios = await Servicios.find();
     res.json({servicios});
-    console.log(chalk.bgBlue.white.bold(servicios));
+    
 }
 
 exports.crearServicio = async (req, res) => {
     const servicio = await new Servicios()
     servicio.nombre = req.body.nombre
     servicio.descripcion = req.body.descripcion
-    console.log(req.body.nombre, req.body.descripcion)
+    
 
     servicio.save((err, servicio) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Servicio: ${err}`})
@@ -27,7 +27,7 @@ exports.servicioPorId = async (req, res) => {
         if(!servicio) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
             res.status(200).json({servicio : servicio})
-            console.log(servicio);
+         
         }
     });
 }
@@ -40,10 +40,10 @@ exports.actualizarServicio = async (req, res) => {
         descripcion
     }}, {new : true}, function(err, servicio){
         if(err){
-            console.log('Error:', err);
+            
             res.json({mensaje: 'error'})
         }
-        console.log(servicio);
+        
         res.json({status:'Success', mensaje:'Servicio actualizado'});
     });
 }

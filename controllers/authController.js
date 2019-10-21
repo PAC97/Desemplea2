@@ -11,7 +11,7 @@ exports.Autenticacion = async (req, res, next) => {
             next(err);
         }else{
             if(bcrypt.compareSync(req.body.Password, Usuario.Password)){
-                console.log(chalk.inverse(req.body.Password, Usuario.Password));
+                
                 const token = jwt.sign({id: Usuario._id,}, req.app.get('secretKey'),
                 {expiresIn: '1h'});
                 const base64Url = token.split('.')[1];

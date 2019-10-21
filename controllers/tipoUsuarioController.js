@@ -25,7 +25,7 @@ exports.tipoUsuarioPorId = async (req, res, next) => {
         if(!tipoUsuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
             res.status(200).json({status: 'Success', tipoUsuario: tipoUsuario})
-            console.log(tipoUsuario);
+            
         }
         
     })
@@ -39,10 +39,10 @@ exports.actualizarTipousuario = async (req, res) => {
         descripcion
     }}, {new : true}, function(err, tipoUsuario){
         if(err){
-            console.log('Error:', err);
+            
             res.json('Error')
         }
-        console.log(tipoUsuario);
+        
         res.status(200).json({status: 'Success', mensaje: 'Tipo usuario actualizado'})
     });
 }
