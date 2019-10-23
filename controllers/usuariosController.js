@@ -15,7 +15,8 @@ exports.crearUsuario = async (req, res) => {
     usuario.Password = req.body.Password,
     usuario.ID_TipoUsuario = req.body.ID_TipoUsuario,
     usuario.Servicios = req.body.Servicios,
-    usuario.pathImg = req.body.pathImg
+    usuario.pathImg = req.body.pathImg,
+    usuario.Estado = req.body.Estado
     usuario.save((err, usuario) =>{
         if(err) res.status(500).json({mensaje: `Error al insertar Servicio: ${err}`})
         res.json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:null});
@@ -36,7 +37,7 @@ exports.usuarioPorId = async (req, res) => {
 
 exports.actualizarUsuario = async (req, res) => {
     const id = req.params.id;
-    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios, pathImg} = req.body;
+    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios, pathImg, Estado} = req.body;
     const usuario = await Usuarios.findByIdAndUpdate(id, {$set: {
         Nombres,
         Apellidos,
@@ -47,7 +48,8 @@ exports.actualizarUsuario = async (req, res) => {
         Password,
         ID_TipoUsuario,
         Servicios,
-        pathImg
+        pathImg,
+        Estado
     }}, {new : true}, function(err, usuario){
         if(err){
             

@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const chalk = require('chalk');
-mongoose.connect('mongodb://localhost:27017/desemplea2', {
+require('dotenv').config({path: '../variables.env'});
+mongoose.connect(process.env.DATABASE, {
     useCreateIndex: true,    
     useNewUrlParser: true,
     useFindAndModify: false

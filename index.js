@@ -1,43 +1,25 @@
+const http = require('http');
 const express = require('express');
+const socketIO = require('socket.io');
+
 const app = express();
+const server = http.createServer(app);
+const io = socketIO.listen(server);
+
 const routes = require('./routes'); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('morgan');
-const Mensajes = require('./models/Mensajes');
-app.set('port', process.env.PORT || 3000)
 
-app.set('server', app.listen(app.get('port'), ()=>{
-  console.log('Servidor en puerto', app.get('port'));
-}));
+require('dotenv').config({path: 'variables.env'});
 
-const db = require('./config/db');
+require('./config/db');
+app.set('port', process.env.PORT || process.env.PUERTO)
 
-const socketIO = require('socket.io');
-const io = socketIO(app.get('server'));
-
-io.on('connection', (socket) => {
-  console.log('Nueva conexion');
-
-  socket.on('nuevo-mensaje', (mensaje) => {
-      console.log(mensaje);
-    });
-  socket.on('nuevo-mensaje', (mensaje, emisor, receptor) => {
-      io.emit('nuevo-mensaje',{
-        emisor: emisor,
-        mensaje: mensaje,
-        receptor: receptor
-      });   
-      const mensajes = new Mensajes({Emisor: emisor, Mensaje: mensaje, Receptor: receptor});
-      mensajes.save();   
-    });
-}); 
-//Conexion a base de datos
-
-
+require('./controllers/mensajesController')(io);
 
 //Configuraciones
-app.set('secretKey', 'nodeRestApi')
+app.set(process.env.SECRETO, process.env.KEY)
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -56,8 +38,10 @@ app.use((err, req, res, next) =>{
      if(err.status === 404)
       res.status(404).json({message: "No encontrado"});
      else 
-       res.status(500).json({message: "Ocurrio un error :( !!!"});});
+       res.status(500).json({message: "Ocurrio un error :( !!!"});
+});
 
-
-
+server.listen(app.get('port'), ()=>{
+  console.log('Servidor corriendo en puerto', app.get('port'))
+})
 

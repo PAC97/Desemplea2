@@ -7,6 +7,7 @@ exports.publicacionesLista = async (req, res) => {
         if(err) res.status(500).json('Error')
        
         res.json({publicaciones});
+        console.log(publicaciones);
     });
     
 }

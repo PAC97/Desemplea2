@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment-timezone');
 const fechaActual = moment.tz(Date.now(), "America/El_Salvador");
-const MensajesSchema = new Schema({
+const ChatsSchema = new Schema({
     Emisor:{
         type: Schema.Types.ObjectId,
         ref: 'Usuarios',
@@ -20,4 +20,4 @@ const MensajesSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Mensajes', MensajesSchema);
+module.exports = mongoose.model('Chat', ChatsSchema);

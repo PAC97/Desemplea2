@@ -2,6 +2,7 @@ const Usuarios = require('../models/Usuario');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const chalk = require('chalk');
+require('dotenv').config({path: '../variables.env'});
 
 exports.Autenticacion = async (req, res, next) => {
     Usuarios.findOne({Correo:req.body.Correo})
@@ -12,7 +13,7 @@ exports.Autenticacion = async (req, res, next) => {
         }else{
             if(bcrypt.compareSync(req.body.Password, Usuario.Password)){
                 
-                const token = jwt.sign({id: Usuario._id,}, req.app.get('secretKey'),
+                const token = jwt.sign({id: Usuario._id,}, req.app.get(process.env.SECRETO),
                 {expiresIn: '1h'});
                 const base64Url = token.split('.')[1];
                 const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
