@@ -12,7 +12,7 @@ module.exports = function(){
     //Tipo Usuario rutas
     
     router.get('/api/tipoUsuario', 
-    authController.ValidarAuth,  
+     /* authController.ValidarAuth,    */
     tipoUsuarioController.tipoUsuarioLista);
     router.post('/api/tipoUsuario', 
      authController.ValidarAuth, 
