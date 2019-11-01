@@ -10,7 +10,11 @@ exports.Autenticacion = async (req, res, next) => {
     .exec(function(err, Usuario){
         if(err){
             next(err);
-        }else{
+        }
+        if(!Usuario){
+            res.json({status:'error', mensaje: 'Usuario no existe', data: null})
+        }
+        else{
             if(bcrypt.compareSync(req.body.Password, Usuario.Password)){
                 
                 const token = jwt.sign({id: Usuario._id,}, req.app.get(process.env.SECRETO),
