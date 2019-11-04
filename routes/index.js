@@ -8,6 +8,7 @@ const servicioController = require('../controllers/serviciosController');
 const usuarioController = require('../controllers/usuariosController');
 const publicacionController = require('../controllers/publicacionesController');
 const authController = require('../controllers/authController');
+const chatController = require('../controllers/chatController');
 module.exports = function(){
     //Tipo Usuario rutas
     
@@ -84,5 +85,8 @@ module.exports = function(){
     router.delete('/api/publicaciones/:id', 
     authController.ValidarAuth,
     publicacionController.eliminarPublicacion);
+
+    //Mensajes
+    router.get('/api/chat/:id', chatController.ChatLista);
     return router;
 }   
