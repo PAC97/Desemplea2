@@ -88,5 +88,6 @@ module.exports = function(){
 
     //Mensajes
     router.get('/api/chat/:id', chatController.ChatLista);
+    router.get('/api/chats/:ide/:idr', chatController.Chats);
     return router;
 }   

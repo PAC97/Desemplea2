@@ -12,3 +12,16 @@ exports.ChatLista = async (req, res) => {
       res.status(200).json({status: 'Success', Chat: Chat})
     })
   }
+
+  exports.Chats = async (req, res) => {
+    await Chat.find({Emisor: req.params.ide, Receptor: req.params.idr})
+    .populate('Emisor')
+    .populate('Receptor')
+    .exec((err, Chat) => {
+      if(err) res.status(500).json({mensaje: 'Ocurrio un error'})
+      if(!Chat){
+        res.status(403).json({mensaje: 'Lista Vacia'})
+      }
+      res.status(200).json({status: 'Success', Chat: Chat})
+    })
+  }
