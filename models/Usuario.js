@@ -17,7 +17,8 @@ const salt = 10;
     Servicios:[{nombre: String}],
     pathImg: {type: String},
     Region: {type: String},
-    Estado: {type: Boolean}
+    Estado: {type: Boolean},
+    Acciones: [{accion: String}]
 });
 
 //Hashear password

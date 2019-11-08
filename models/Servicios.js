@@ -4,10 +4,13 @@ const Schema = mongoose.Schema;
 const ServiciosSchema = new Schema({
     nombre: {
         type: String      
-    } ,
+    },
     descripcion: {
         type: String
-    } ,
+    },
+    pathImage:{
+        type: String
+    }
 },
 {
     versionKey: false

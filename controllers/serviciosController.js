@@ -12,6 +12,7 @@ exports.crearServicio = async (req, res) => {
     const servicio = await new Servicios()
     servicio.nombre = req.body.nombre
     servicio.descripcion = req.body.descripcion
+    servicio.pathImage = req.body.pathImage
     
 
     servicio.save((err, servicio) =>{
