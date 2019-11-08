@@ -26,5 +26,9 @@ UsuariosSchema.pre('save', function(next){
     this.Password = bcrypt.hashSync(this.Password, salt);
     next();
 });
+UsuariosSchema.pre('findByIdAndUpdate', function(next){
+    this.Password = bcrypt.hashSync(this.Password, salt);
+    next();
+})
 
 module.exports = mongoose.model('Usuarios', UsuariosSchema);
