@@ -38,27 +38,26 @@ exports.usuarioPorId = async (req, res) => {
 
 exports.actualizarUsuario = async (req, res) => {
     const id = req.params.id;
-    const {Nombres, Apellidos, Edad, Telefono, Direccion, Correo, Password, ID_TipoUsuario, Servicios, pathImg, Estado} = req.body;
-    const usuario = await Usuarios.findByIdAndUpdate(id, {$set: {
-        Nombres,
-        Apellidos,
-        Edad,
-        Telefono,
-        Direccion,
-        Correo,
-        Password,
-        ID_TipoUsuario,
-        Servicios,
-        pathImg,
-        Estado
-    }}, {new : true}, function(err, usuario){
-        if(err){
-            
-            res.json({mensaje: 'Error'})
+    const usuario = await Usuarios.findById(id);
+        usuario.Nombres = req.body.Nombres;
+        usuario.Apellidos= req.body.Apellidos;
+        usuario.Edad = req.body.Edad;
+        usuario.Telefono = req.body.Telefono;
+        usuario.Direccion = req.body.Direccion;
+        usuario.Correo = req.body.Correo;
+        if(req.body.Password){
+            usuario.Password = req.body.Password;
         }
-        
-        res.status(200).json({status:'Success', mensaje: 'Actualizado', Usuario: usuario});
-    });
+        usuario.ID_TipoUsuario = req.body.ID_TipoUsuario;
+        usuario.Servicios = req.body.Servicios;
+        if(req.body.pathImg){
+            usuario.pathImg = req.body.pathImg;
+        }
+        usuario.Estado = req.body.Estado;
+        usuario.save((err, usuario)=>{
+            if(err) res.status(500).json({mensaje: `Error al Modificar Servicio: ${err}`})
+            res.status(200).json({status: 'success', mensaje:'Usuario agregado correctamente', usuario:usuario});
+        });
 }
 
 exports.eliminarusuario = async (req, res) => {
@@ -71,4 +70,18 @@ exports.eliminarusuario = async (req, res) => {
         if(!usuario) res.status(404).json({mensaje:'No se encuentra ese dato'})
         res.status(200).json({status:'Success',mensaje: 'Servicio eliminado'})
     })
+}
+
+exports.listaAdministrador = async (req, res) => {
+    const idAdmin = req.params.admin;
+    console.log(idAdmin);
+    const usuario = await Usuarios.find({ID_TipoUsuario: idAdmin}, (err, usuario) =>{
+        if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
+        if(!usuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
+        else{
+            res.status(200).json({status: 'Success', mensaje : 'Usuario encontrado.', usuario})
+            
+        }
+    });
+
 }

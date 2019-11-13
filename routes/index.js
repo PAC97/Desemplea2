@@ -47,13 +47,15 @@ module.exports = function(){
 
     //Usuario Rutas
     router.get('/api/usuario', 
-    
+    authController.ValidarAuth,
     usuarioController.usuariosLista);
     router.post('/api/usuario', 
     usuarioController.crearUsuario);
     router.get ('/api/usuario/:id', 
      authController.ValidarAuth, 
     usuarioController.usuarioPorId);
+    router.get('/api/usuarioA/:admin',
+    usuarioController.listaAdministrador)
     router.put('/api/usuario/:id', 
     authController.ValidarAuth,
     usuarioController.actualizarUsuario);

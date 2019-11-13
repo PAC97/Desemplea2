@@ -23,12 +23,13 @@ const salt = 10;
 
 //Hashear password
 UsuariosSchema.pre('save', function(next){
+    //Si el password ya esta hasheado no se hace nada
+    if(!this.isModified('Password')){
+        return next();
+    }
     this.Password = bcrypt.hashSync(this.Password, salt);
     next();
 });
-UsuariosSchema.pre('findByIdAndUpdate', function(next){
-    this.Password = bcrypt.hashSync(this.Password, salt);
-    next();
-})
+
 
 module.exports = mongoose.model('Usuarios', UsuariosSchema);

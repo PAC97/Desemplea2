@@ -1,5 +1,5 @@
 const Chat = require('../models/Chat');
-const Sala = require('../models/Salas');
+
 module.exports = (io) =>{ 
     io.on('connection', socket => {
         console.log('Nueva conexion');
