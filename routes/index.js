@@ -94,8 +94,17 @@ module.exports = function(){
 
     //#region Comentarios
     router.get('/api/comentarios/:idPubli', 
-        authController.ValidarAuth,
+        //authController.ValidarAuth,
         comentariosController.comentariosPublicacion
     );
+    router.post('/api/comentarios/', 
+        comentariosController.agregarComentario
+    );
+    router.put('/api/comentarios/:id',
+        comentariosController.modificarComentario
+    );
+    router.delete('/api/comentarios/:id',
+        comentariosController.eliminarComentario
+    )
     return router;
 }   
