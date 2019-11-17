@@ -9,6 +9,7 @@ const usuarioController = require('../controllers/usuariosController');
 const publicacionController = require('../controllers/publicacionesController');
 const authController = require('../controllers/authController');
 const chatController = require('../controllers/chatController');
+const comentariosController = require('../controllers/comentariosController');
 module.exports = function(){
     // #region Tipo Usuario rutas
     
@@ -87,8 +88,14 @@ module.exports = function(){
     router.delete('/api/publicaciones/:id', 
     authController.ValidarAuth,
     publicacionController.eliminarPublicacion);
-
+    //#endregion
     //Mensajes
     router.get('/api/chat/:id', chatController.ChatLista);
+
+    //#region Comentarios
+    router.get('/api/comentarios/:idPubli', 
+        authController.ValidarAuth,
+        comentariosController.comentariosPublicacion
+    );
     return router;
 }   
