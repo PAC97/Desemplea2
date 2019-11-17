@@ -4,7 +4,7 @@ const chalk = require('chalk');
 exports.serviciosLista = async (req, res) => {
     const servicios = await Servicios.find();
     res.json({servicios});
-    console.log(servicios);
+    
     
 }
 

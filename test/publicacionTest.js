@@ -3,7 +3,7 @@ const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 
 chai.use(chaiHttp);
-const url = 'http://localhost:3000/api';
+const url = 'https://desempla2.herokuapp.com/api';
 const Usuario = '5d4e41a0973dd21aa8c192a8';
 const ID_Servicio = '5d50dad2a22ea924c060bdbf';
 describe('Insertar publicacion: ', ()=>{

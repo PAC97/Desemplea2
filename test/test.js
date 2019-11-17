@@ -3,7 +3,7 @@ const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 
 chai.use(chaiHttp);
-const url = 'http://localhost:3000/api';
+const url = 'https://desempla2.herokuapp.com/api';
 
 describe('Insertar servicio: ', ()=>{
     it('Insertatste un servicio', (done) =>{

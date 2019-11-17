@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment-timezone');
 const chalk = require('chalk');
 require('dotenv').config({path: '../variables.env'});
 mongoose.connect(process.env.DATABASE, {

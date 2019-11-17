@@ -9,14 +9,15 @@ const usuarioController = require('../controllers/usuariosController');
 const publicacionController = require('../controllers/publicacionesController');
 const authController = require('../controllers/authController');
 const chatController = require('../controllers/chatController');
+const comentariosController = require('../controllers/comentariosController');
 module.exports = function(){
-    //Tipo Usuario rutas
+    // #region Tipo Usuario rutas
     
     router.get('/api/tipoUsuario', 
      authController.ValidarAuth,   
     tipoUsuarioController.tipoUsuarioLista);
     router.post('/api/tipoUsuario', 
-     /* authController.ValidarAuth,  */
+    authController.ValidarAuth,  
     tipoUsuarioController.crearTipoUsuario);
     router.get ('/api/tipoUsuario/:id', 
     authController.ValidarAuth,
@@ -27,8 +28,8 @@ module.exports = function(){
     router.delete('/api/tipoUsuario/:id', 
     authController.ValidarAuth,
     tipoUsuarioController.eliminarTipousuario);
-
-    //Servicios rutas
+    // #endregion
+    // #region Servicios rutas
     router.get('/api/servicio', 
     
     servicioController.serviciosLista);
@@ -44,8 +45,8 @@ module.exports = function(){
     router.delete('/api/servicio/:id', 
     authController.ValidarAuth,
     servicioController.eliminarServicio);
-
-    //Usuario Rutas
+    // #endregion
+    // #region Usuario Rutas
     router.get('/api/usuario', 
     authController.ValidarAuth,
     usuarioController.usuariosLista);
@@ -64,8 +65,8 @@ module.exports = function(){
     usuarioController.eliminarusuario);
     router.post('/api/autenticacion',
     authController.Autenticacion); 
-
-    //Publicaciones rutas
+    // #endregion
+    // #region Publicaciones rutas
     router.get('/api/publicaciones', 
     authController.ValidarAuth,
     publicacionController.publicacionesLista);
@@ -87,9 +88,12 @@ module.exports = function(){
     router.delete('/api/publicaciones/:id', 
     authController.ValidarAuth,
     publicacionController.eliminarPublicacion);
-
-    //Mensajes
+    // #endregion
+    // #region Mensajes
     router.get('/api/chat/:id', chatController.ChatLista);
     router.get('/api/chats/:ide/:idr', chatController.Chats);
+    // #endregion
+    // #region Comentarios
+    router.get('/api/comentarios/:idPubli', comentariosController.comentariosPublicacion );
     return router;
 }   

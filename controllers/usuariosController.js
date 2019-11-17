@@ -73,9 +73,7 @@ exports.eliminarusuario = async (req, res) => {
 }
 
 exports.listaAdministrador = async (req, res) => {
-    const idAdmin = req.params.admin;
-    console.log(idAdmin);
-    const usuario = await Usuarios.find({ID_TipoUsuario: idAdmin}, (err, usuario) =>{
+        await Usuarios.find({ID_TipoUsuario: req.params.admin}, (err, usuario) =>{
         if(err) res.status(500).json({mensaje: `Error al realizar la peticion: ${err}`})
         if(!usuario) res.status(404).json({mensaje: 'No se encuentra ese dato'})
         else{
