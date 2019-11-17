@@ -87,18 +87,8 @@ module.exports = function(){
     router.delete('/api/publicaciones/:id', 
     authController.ValidarAuth,
     publicacionController.eliminarPublicacion);
-<<<<<<< HEAD
-    // #endregion
-    // #region Mensajes
-    router.get('/api/chat/:id', chatController.ChatLista);
-    router.get('/api/chats/:ide/:idr', chatController.Chats);
-    // #endregion
-    // #region Comentarios
-    router.get('/api/comentarios/:idPubli', comentariosController.comentariosPublicacion );
-=======
 
     //Mensajes
     router.get('/api/chat/:id', chatController.ChatLista);
->>>>>>> 62bca3f0e6ae49a23a87a6f4e2b076cc3c526cb7
     return router;
 }   
