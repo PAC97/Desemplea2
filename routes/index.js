@@ -93,7 +93,6 @@ module.exports = function(){
     router.get('/api/chat/:id', chatController.ChatLista);
 
     //#region Comentarios
-    
     router.get('/api/comentarios/:idPubli', 
         authController.ValidarAuth,
         comentariosController.comentariosPublicacion
